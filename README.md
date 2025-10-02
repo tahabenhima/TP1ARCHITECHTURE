@@ -53,12 +53,26 @@ src/
 
 ## Utilisation
 
-### Compilation
+### Méthode Rapide (Script automatisé)
 
 ```bash
+# Utiliser le script de compilation et d'exécution
+./run.sh
+```
+
+Le script `run.sh` compile automatiquement tous les fichiers, exécute les tests et lance l'application de démonstration.
+
+### Compilation Manuelle
+
+```bash
+# Créer le répertoire de sortie
+mkdir -p bin
+
 # Compiler tous les fichiers Java
-cd /home/runner/work/TP1ARCHITECHTURE/TP1ARCHITECHTURE
-javac -d bin -sourcepath src/main/java src/main/java/com/tp1/reflection/**/*.java
+javac -d bin -sourcepath src/main/java $(find src/main/java -name "*.java")
+
+# Compiler les tests
+javac -d bin -cp bin -sourcepath src/test/java $(find src/test/java -name "*.java")
 ```
 
 ### Exécution de l'Application de Démonstration
@@ -71,9 +85,6 @@ java -cp bin com.tp1.reflection.examples.Application
 ### Exécution des Tests
 
 ```bash
-# Compiler les tests
-javac -d bin -cp bin -sourcepath src/test/java src/test/java/com/tp1/reflection/*.java
-
 # Exécuter les tests
 java -cp bin com.tp1.reflection.IoCContainerTest
 ```
